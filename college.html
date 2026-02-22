@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore Colleges - EduVault</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .bg-subtle { background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%); }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .bg-subtle {
+            background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+        }
     </style>
 </head>
+
 <body class="bg-subtle text-slate-900 min-h-screen">
-<!-- 
+    <!-- 
    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
     <div class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-6">
         
@@ -39,73 +47,217 @@
     </div>
 </nav> -->
 
-<header id="Navbar"></header>
-<script src="navbar.js"></script>
+    <header id="Navbar"></header>
+    <script src="navbar.js"></script>
 
-    <main class="max-w-7xl mx-auto px-6 pt-10 pb-20">
-        <div class="text-center mb-12">
+    <main class="max-w-7xl mx-auto px-6 pt-10 pb-20 ">
+        <div class="text-center mb-12 ">
             <h1 class="text-5xl font-extrabold text-[#112D4E] tracking-tight">Explore Top Colleges</h1>
             <p class="text-slate-500 mt-4 max-w-2xl mx-auto text-lg">
                 Discover institutions, compare facilities, and find the right fit for your academic journey.
             </p>
         </div>
 
-        <div class="max-w-4xl mx-auto bg-white p-4 rounded-3xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)] border border-slate-100 flex flex-col md:flex-row gap-4 items-center mb-20">
+        <div
+            class="max-w-4xl mx-auto bg-white p-4 rounded-3xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)] border border-slate-100 flex flex-col md:flex-row gap-4 items-center mb-20">
             <div class="relative flex-1 w-full">
                 <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
                 </span>
-                <input type="text" placeholder="Search colleges..." class="w-full pl-12 pr-4 py-4 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-blue-100 text-slate-700 outline-none">
+                <input type="text" placeholder="Search colleges..."
+                    class="w-full pl-12 pr-4 py-4 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-blue-100 text-slate-700 outline-none">
             </div>
-            
+
             <div class="relative w-full md:w-64">
-                <select class="w-full px-6 py-4 rounded-2xl bg-slate-50 border-none appearance-none focus:ring-2 focus:ring-blue-100 text-slate-700 outline-none font-medium">
+                <select
+                    class="w-full px-6 py-4 rounded-2xl bg-slate-50 border-none appearance-none focus:ring-2 focus:ring-blue-100 text-slate-700 outline-none font-medium">
                     <option>All Locations</option>
                     <option>Karnal</option>
                     <!-- <option>no Locations</option>
                     <option>no Locations</option> -->
                 </select>
                 <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
                 </span>
             </div>
 
-            <button class="w-full md:w-auto bg-blue-600 text-white px-10 py-4 rounded-2xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100">
+            <button
+                class="w-full md:w-auto bg-blue-600 text-white px-10 py-4 rounded-2xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100">
                 Search
             </button>
         </div>
 
-        <div class="max-w-4xl mx-auto mt-10">
-            <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-50">
+        <div class="max-w-2xl mx-auto mt-10">
+            <div
+                class="bg-white rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-50">
                 <div class="h-70 overflow-hidden m-4 rounded-[2rem]">
-                    <img src="https://i.ibb.co/yrWBGzJ/budha-group-of-institutions-karnal-computer-training-institutes-w8bww0h9mc.avif" alt="Budha Group of Institutions" class="w-full h-full object-cover">
+                    <img src="https://i.ibb.co/yrWBGzJ/budha-group-of-institutions-karnal-computer-training-institutes-w8bww0h9mc.avif"
+                        alt="Budha Group of Institutions" class="w-full h-full object-cover">
                 </div>
-                
+
                 <div class="px-10 pb-10 pt-4">
                     <h2 class="text-3xl font-extrabold text-[#112D4E] mb-1">Budha College of Architecture</h2>
                     <p class="text-blue-600 font-bold text-lg mb-6">Karnal</p>
-                    
+
                     <p class="text-slate-500 text-lg leading-relaxed mb-10">
-                        A leading architecture institution in Karnal focused on design excellence, innovation, and practical learning.
+                        A leading architecture institution in Karnal focused on design excellence, innovation, and
+                        practical learning.
                     </p>
 
                     <div class="flex items-center justify-between border-t border-slate-100 pt-8">
                         <div class="flex items-center gap-2 text-slate-500 font-medium">
-                            <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
                             <span class="text-lg">Karnal, Haryana</span>
                         </div>
 
                         <a href="department.html" target="_blank"
-   class="bg-blue-600 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100 inline-block">
-   View Details
-</a>
+                            class="bg-blue-600 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100 inline-block">
+                            View Details
+                        </a>
+
 
                     </div>
+
                 </div>
+
+            </div>
+
+                <!-- D.A.V. (PG) College -->
+                <div class="max-w-2xl mx-auto mt-10">
+                    <div
+                        class="bg-white rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-50">
+                        <div class="h-70 overflow-hidden m-4 rounded-[2rem]">
+                            <img src="https://davcollegekarnal.ac.in/images/contact-dav-pg-college.JPG"
+                                alt="Budha Group of Institutions" class="w-full h-full object-cover">
+                        </div>
+
+                        <div class="px-10 pb-10 pt-4">
+                            <h2 class="text-3xl font-extrabold text-[#112D4E] mb-1">D.A.V. (PG) College</h2>
+                            <p class="text-blue-600 font-bold text-lg mb-6">Karnal</p>
+
+                            <p class="text-slate-500 text-lg leading-relaxed mb-10">
+                                D.A.V. (PG) College in Karnal, is known for providing overall development to the
+                                students. Established in 1974, it has now become one of the premier institutions of
+                                Haryana.
+                            </p>
+
+                            <div class="flex items-center justify-between border-t border-slate-100 pt-8">
+                                <div class="flex items-center gap-2 text-slate-500 font-medium">
+                                    <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    <span class="text-lg">Karnal, Haryana</span>
+                                </div>
+
+                                <a href="notdata.html" target="_blank"
+                                    class="bg-blue-600 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100 inline-block">
+                                    View Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dyal Singh Collegee -->
+                <div class="max-w-2xl mx-auto mt-10">
+                    <div
+                        class="bg-white rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-50">
+                        <div class="h-70 overflow-hidden m-4 rounded-[2rem]">
+                            <img src="https://www.dsckarnal.ac.in/wp-content/uploads/2022/03/Dyal-Singh-College.png"
+                                alt="Budha Group of Institutions" class="w-full h-full object-cover">
+                        </div>
+
+                        <div class="px-10 pb-10 pt-4">
+                            <h2 class="text-3xl font-extrabold text-[#112D4E] mb-1">Dyal Singh College</h2>
+                            <p class="text-blue-600 font-bold text-lg mb-6">Karnal</p>
+
+                            <p class="text-slate-500 text-lg leading-relaxed mb-10">
+                                Dyal Singh College, Karnal, as it stands today, is a premier co-educational centre of
+                                learning of Northern India. With a strength of 3693 students, the college has all the
+                                three streams of learning - Arts, Science and Commerce, with Post Graduate courses in
+                                English, Hindi, Political Science, Economics, Commerce and Chemistry, along with the
+                                add-on and vocational courses.
+                            </p>
+
+                            <div class="flex items-center justify-between border-t border-slate-100 pt-8">
+                                <div class="flex items-center gap-2 text-slate-500 font-medium">
+                                    <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    <span class="text-lg">Karnal, Haryana</span>
+                                </div>
+
+                                <a href="notdata.html" target="_blank"
+                                    class="bg-blue-600 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100 inline-block">
+                                    View Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pt Chiranji Lal Sharma Government College...  -->
+                <div class="max-w-2xl mx-auto mt-10">
+                    <div
+                        class="bg-white rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-50">
+                        <div class="h-70 overflow-hidden m-4 rounded-[2rem]">
+                            <img src="https://content3.jdmagicbox.com/v2/comp/karnal/c6/9999px184.x184.140618175810.f6c6/catalogue/pt-chiranji-lal-sharma-government-college-karnal-sector-14-karnal-government-colleges-5Dv0NX0K6f.jpg"
+                                alt="Budha Group of Institutions" class="w-full h-full object-cover">
+                        </div>
+
+                        <div class="px-10 pb-10 pt-4">
+                            <h2 class="text-3xl font-extrabold text-[#112D4E] mb-1">Pt Chiranji Lal Sharma Government College</h2>
+                            <p class="text-blue-600 font-bold text-lg mb-6">Karnal</p>
+
+                            <p class="text-slate-500 text-lg leading-relaxed mb-10">
+                                Welcome to this website of Pandit Chiranji Lal Sharma Government College, Karnal. Our basic mantra is Swadhyayat Ma Pramadah, which inspires us for continuous introspection as well as illuminates our path of life. Swadhyaya means self-analysis, because without introspection, we cannot reach any higher goal. It is written in Shatpath Brahmin that water flows because flowing is its religion.
+                            </p>
+
+                            <div class="flex items-center justify-between border-t border-slate-100 pt-8">
+                                <div class="flex items-center gap-2 text-slate-500 font-medium">
+                                    <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    <span class="text-lg">Karnal, Haryana</span>
+                                </div>
+
+                                <a href="notdata.html" target="_blank"
+                                    class="bg-blue-600 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100 inline-block">
+                                    View Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
+        
+
     </main>
-<div id="Footer"></div>
-<script src="footer.js"></script>
+    <div id="Footer"></div>
+    <script src="footer.js"></script>
 </body>
+
 </html>
