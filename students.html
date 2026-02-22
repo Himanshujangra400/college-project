@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCA Students - EduVault</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-[#F8FAFF] text-slate-900 min-h-screen flex flex-col">
+
+<!-- Navbar -->
+<header id="Navbar"></header>
+<script src="navbar.js"></script>
+
+<!-- Main Content -->
+<main class="flex-grow">
+
+    <!-- Breadcrumb -->
+    <div class="max-w-7xl mx-auto px-12 py-4 text-sm text-slate-400">
+        <a href="index.html" class="hover:text-blue-600 transition">Home</a>
+        &nbsp;>&nbsp;
+        <a href="college.html" class="hover:text-blue-600 transition">Colleges</a>
+        &nbsp;>&nbsp;
+        <a href="department.html" class="hover:text-blue-600 transition">
+            Budha College of Architecture
+        </a>
+        &nbsp;>&nbsp;
+        <span class="text-slate-600 font-medium">Students</span>
+    </div>
+
+    <!-- Page Header -->
+    <div class="max-w-7xl mx-auto px-12 mb-12">
+        <h1 class="text-5xl font-extrabold text-[#112D4E] mb-4">
+            BCA Students
+        </h1>
+        <p class="text-slate-500 text-lg max-w-3xl">
+            Meet our talented BCA students specialized in software development, web technologies, and more.
+        </p>
+    </div>
+
+    <!-- Search Section -->
+    <section class="max-w-7xl mx-auto px-12 mb-16">
+        <div class="flex gap-4">
+            <div class="relative flex-1">
+                <span class="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </span>
+                <input type="text" id="searchInput"
+                    placeholder="Search by name or skill..."
+                    class="w-full pl-14 pr-6 py-4 rounded-2xl bg-white border border-slate-100 shadow-sm outline-none focus:ring-2 focus:ring-blue-100 transition">
+            </div>
+            <button id="searchBtn"
+                class="bg-blue-600 text-white px-12 py-4 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-blue-700 transition">
+                Search
+            </button>
+        </div>
+    </section>
+
+    <!-- Students Grid -->
+    <section class="max-w-7xl mx-auto px-12 mb-20">
+        <div id="studentGrid"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        </div>
+
+        <div class="mt-16 text-center">
+            <button
+                class="bg-blue-600 text-white px-12 py-4 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-blue-700 transition">
+                View All Students
+            </button>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<div id="Footer"></div>
+<script src="footer.js"></script>
+
+<!-- JS -->
+
+<script>
+
+const students = [
+    {
+        id: "gavi",
+        name: "Gavi",
+        skill: "AI • Web Development",
+        img: "https://i.ibb.co/yJk2vVn/1510f7e5-11ae-4eb9-8c01-b361ed4fd1a1.jpg"
+    },
+    {
+        id: "ARJU SHARMA",
+        name: "ARJU SHARMA",
+        skill: "Python • Machine Learning",
+        img: "https://i.ibb.co/hRQdkBh7/Whats-App-Image-2025-05-15-at-11-49-46-AM.jpg"
+    },
+    {
+        id: "gurmer",
+        name: "Gurmer",
+        skill: "Java - Data Structures",
+        img: "https://i.ibb.co/svzNYHYy/9bbd2070-ddf0-4ebc-92ba-f695c16ea947.jpg"
+    },
+    {
+        id: "himanshu",
+        name: "Himanshu",
+        skill: "C++ • HTML • CSS",
+        img: "https://i.ibb.co/4Zf8zCRG/Whats-App-Image-2025-05-15-at-10-16-38-AM.jpg"
+    },
+    {
+        id: "DEVANSH",
+        name: "DEVANSH",
+        skill: "Full Stack Development",
+        img: "https://i.ibb.co/jv5f9YRB/3ffbfc35-bc30-4ed4-8eb9-f923f8f1638a.jpg"
+    },
+    {
+        id: "robin",
+        name: "Robin",
+        skill: "React • JavaScript",
+        img: "https://i.ibb.co/kVhTqPpb/IMG-20250515-101417-1.jpg"
+         },
+    // {
+    //     id: "harsh",
+    //     name: "Harsh Patel",
+    //     skill: "Cloud Computing - C#",
+    //     img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80"
+    // }
+];
+
+const grid = document.getElementById("studentGrid");
+const input = document.getElementById("searchInput");
+const btn = document.getElementById("searchBtn");
+
+function displayStudents(filteredList) {
+
+    if(filteredList.length === 0) {
+        grid.innerHTML = `
+            <p class="col-span-full text-center text-slate-400 py-10">
+                No students found.
+            </p>`;
+        return;
+    }
+
+    grid.innerHTML = filteredList.map(s => `
+        <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-50 text-center hover:shadow-xl transition-all duration-300">
+
+            <div class="w-28 h-28 mx-auto mb-6 rounded-3xl overflow-hidden shadow-lg">
+                <img src="${s.img}" alt="${s.name}" class="w-full h-full object-cover">
+            </div>
+
+            <h3 class="text-2xl font-extrabold text-[#112D4E] mb-2">
+                ${s.name}
+            </h3>
+
+            <p class="text-slate-400 font-medium mb-8 text-sm">
+                ${s.skill}
+            </p>
+
+            <a href="student-portfolio.html?student=${s.id}"
+               class="block w-full py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-md shadow-blue-100 hover:bg-blue-700 transition">
+               View Portfolio
+            </a>
+
+        </div>
+    `).join("");
+}
+
+displayStudents(students);
+
+function performSearch() {
+    const term = input.value.toLowerCase();
+    const filtered = students.filter(s =>
+        s.name.toLowerCase().includes(term) ||
+        s.skill.toLowerCase().includes(term)
+    );
+    displayStudents(filtered);
+}
+
+btn.addEventListener("click", performSearch);
+input.addEventListener("input", performSearch);
+
+</script>
+</body>
+</html>

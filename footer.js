@@ -14,8 +14,8 @@ document.getElementById("Footer").innerHTML = `
             <h3 class="text-white font-semibold mb-4">Quick Links</h3>
             <ul class="space-y-2 text-sm">
                 <li><a href="index.html" class="hover:text-white transition">Home</a></li>
-                <li><a href="features.html" class="hover:text-white transition">Features</a></li>
-                <li><a href="students.html" class="hover:text-white transition">Students</a></li>
+                <li><a href="products.html" class="hover:text-white transition">Products Marketplace</a></li>
+                <li><a href="top-students.html" class="hover:text-white transition">Students</a></li>
                 <li><a href="college.html" class="hover:text-white transition">Colleges</a></li>
             </ul>
         </div>

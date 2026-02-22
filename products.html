@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Marketplace - EduVault</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .category-pill.active { background-color: #eff6ff; border-color: #3b82f6; border-width: 2px; }
+        .category-pill.active p { color: #1e40af; }
+        .product-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .product-card:hover { transform: translateY(-12px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body class="bg-[#F8FAFF] text-slate-900">
+
+    <header id="Navbar"></header>
+    <script src="navbar.js"></script>
+
+    <main class="max-w-7xl mx-auto px-12 pt-8 pb-20">
+        <div class="mb-10">
+            <h1 class="text-5xl font-extrabold text-[#112D4E] mb-2 tracking-tight">Student Marketplace</h1>
+            <p class="text-slate-500 font-medium text-lg">Buy and sell projects created by top college talent.</p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-4 mb-12">
+            <div class="relative flex-1">
+                <span class="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                </span>
+                <input type="text" id="productSearch" placeholder="Search by project name or student..." class="w-full pl-14 pr-6 py-4 rounded-2xl bg-white border border-slate-100 shadow-sm outline-none focus:ring-4 focus:ring-blue-50 transition-all">
+            </div>
+            <button onclick="filterBySearch()" class="bg-blue-600 text-white px-12 py-4 rounded-2xl font-bold shadow-xl shadow-blue-100 hover:bg-blue-700 transition transform active:scale-95">
+                Search
+            </button>
+        </div>
+
+        <div class="flex gap-4 overflow-x-auto pb-4 mb-12" id="categoryContainer">
+            <button onclick="filterByCategory('All')" class="category-pill active flex items-center gap-3 bg-white border border-slate-100 px-6 py-3 rounded-2xl shrink-0 transition-all">
+                <div class="w-10 h-10 bg-slate-100 rounded-xl flex items-center justify-center text-slate-600">🌈</div>
+                <p class="font-bold text-sm">All Items</p>
+            </button>
+            <button onclick="filterByCategory('Web Development')" class="category-pill flex items-center gap-3 bg-white border border-slate-100 px-6 py-3 rounded-2xl shrink-0 transition-all">
+                <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white">💻</div>
+                <p class="font-bold text-sm">Web Dev</p>
+            </button>
+            <button onclick="filterByCategory('Fashion Design')" class="category-pill flex items-center gap-3 bg-white border border-slate-100 px-6 py-3 rounded-2xl shrink-0 transition-all">
+                <div class="w-10 h-10 bg-rose-400 rounded-xl flex items-center justify-center text-white">👗</div>
+                <p class="font-bold text-sm">Fashion</p>
+            </button>
+            <button onclick="filterByCategory('Painting')" class="category-pill flex items-center gap-3 bg-white border border-slate-100 px-6 py-3 rounded-2xl shrink-0 transition-all">
+                <div class="w-10 h-10 bg-orange-400 rounded-xl flex items-center justify-center text-white">🎨</div>
+                <p class="font-bold text-sm">Painting</p>
+            </button>
+        </div>
+
+        <div id="productGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            </div>
+    </main>
+
+    <script>
+        // Real Images from Unsplash to match categories perfectly
+        const products = [
+            { 
+                id: 1, title: 'Saas Admin Dashboard', cat: 'Web Development', price: '₹ 499', 
+                seller: 'Aman Kumar', college: 'Budha College', sales: 42, 
+                img: 'data:image/jpeg;base64,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',
+                studentImg: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop'
+            },
+            { 
+                id: 2, title: 'AI Assistant Interface', cat: 'AI / ML', price: '₹ 899', 
+                seller: 'Priya Sharma', college: 'Budha College', sales: 31, 
+                img: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
+                studentImg: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop'
+            },
+            { 
+                id: 3, title: 'Floral Summer Dress Sketch', cat: 'Fashion Design', price: '₹ 249', 
+                seller: 'Anjali Yadav', college: 'Budha College', sales: 56, 
+                img: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=600&h=400&fit=crop',
+                studentImg: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop'
+            },
+            { 
+                id: 4, title: 'Oil Portrait Masterpiece', cat: 'Painting', price: '₹ 1200', 
+                seller: 'Rohit Verma', college: 'Budha College', sales: 12, 
+                img: 'https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=600&h=400&fit=crop',
+                studentImg: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop'
+            },
+            { 
+                id: 5, title: 'Modern Kurti Design', cat: 'Fashion Design', price: '₹ 599', 
+                seller: 'Siddharth Singh', college: 'Budha College', sales: 22, 
+                img: 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRaPcsJgMYTX8pWUg1Z7_yNietDxPrc4FnUFAbSsas5a3oZKd3cfPKM6sRrxw65jjrYc1omaG2uUgUXYuAUijbnzEzJPdQs82oEI709_rcZd_6C1ouOggZD',
+                studentImg: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop'
+            },
+            { 
+                id: 6, title: 'Portfolio Website Template', cat: 'Web Development', price: 'Free', 
+                seller: 'Swati Gupta', college: 'Budha College', sales: 89, 
+                img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
+                studentImg: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop'
+            }
+        ];
+
+        const grid = document.getElementById('productGrid');
+
+        function renderProducts(list) {
+            grid.innerHTML = list.map(p => `
+                <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm product-card overflow-hidden group">
+                    <div class="h-56 relative overflow-hidden m-3 rounded-[2rem]">
+                        <img src="${p.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-4 py-1.5 rounded-xl shadow-sm">
+                            <span class="text-blue-600 font-extrabold text-sm tracking-tight">${p.price}</span>
+                        </div>
+                    </div>
+
+                    <div class="px-8 pb-8">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${p.cat}</span>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-[#112D4E] leading-tight mb-6 h-14 overflow-hidden">${p.title}</h3>
+                        
+                        <div class="flex items-center justify-between border-t border-slate-50 pt-6">
+                            <div class="flex items-center gap-3">
+                                <img src="${p.studentImg}" class="w-12 h-12 rounded-full object-cover border-2 border-blue-50">
+                                <div>
+                                    <p class="text-sm font-bold text-slate-800">${p.seller}</p>
+                                    <p class="text-[10px] text-slate-400 font-medium">${p.college}</p>
+                                </div>
+                            </div>
+                            <button class="bg-blue-600 text-white px-6 py-2.5 rounded-xl text-xs font-bold shadow-lg shadow-blue-100 hover:bg-blue-700 transition transform active:scale-95">
+                                View
+                            </button>
+                        </div>
+
+                        <div class="mt-4 flex items-center justify-between">
+                            <div class="bg-orange-50 text-orange-500 px-3 py-1 rounded-lg text-[10px] font-bold">
+                                📒 ${p.sales} Sales
+                            </div>
+                            <div class="flex text-yellow-400 text-xs">
+                                ★★★★<span class="text-slate-200">★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterByCategory(category) {
+            document.querySelectorAll('.category-pill').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            const filtered = category === 'All' ? products : products.filter(p => p.cat === category);
+            renderProducts(filtered);
+        }
+
+        function filterBySearch() {
+            const term = document.getElementById('productSearch').value.toLowerCase();
+            const filtered = products.filter(p => p.title.toLowerCase().includes(term) || p.seller.toLowerCase().includes(term));
+            renderProducts(filtered);
+        }
+
+        renderProducts(products);
+    </script>
+</body>
+</html>

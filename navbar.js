@@ -2,8 +2,8 @@ function Navbar(activePage = "") {
 
     const MENUDATA = [
         { name: "Home", link: "index.html" },
-        { name: "Features", link: "features.html" },
-        { name: "Students", link: "students.html" },
+        { name: "Products Marketplace", link: "products.html" },
+        { name: "Students", link: "top-students.html"},
         { name: "Colleges", link: "college.html" },
     ];
 
@@ -44,9 +44,11 @@ function Navbar(activePage = "") {
                 </a>
             </div>
 
-            <button class="hidden md:block bg-blue-600 text-white px-7 py-2.5 rounded-xl font-bold hover:bg-blue-700 shadow-md transition">
-                Sign Up
-            </button>
+            <a href="Sign-up.html">
+                <button class="hidden md:block bg-blue-600 text-white px-7 py-2.5 rounded-xl font-bold hover:bg-blue-700 shadow-md transition">
+                    Sign Up
+                </button>
+            </a>
 
             <button id="menu-toggle" class="md:hidden text-slate-700">
                 ☰
@@ -60,9 +62,10 @@ function Navbar(activePage = "") {
             <a href="login.html" class="text-slate-600 hover:text-blue-700">
                 Login
             </a>
+            <a href="Sign-up.html">
             <button class="mt-4 bg-blue-600 text-white py-2.5 rounded-xl font-bold hover:bg-blue-700 transition">
                 Sign Up
-            </button>
+            </button> </a>
         </div>
     </nav>
     `;
