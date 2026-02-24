@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMW | Absolute Academic Excellence</title>
+    <style>
+        body { margin: 0; background: #000; overflow: hidden; font-family: 'Syncopate', sans-serif; }
+        #canvas-container { position: absolute; top: 0; width: 100%; height: 100%; z-index: 1; }
+        
+        /* Premium UI Layer */
+        .hud {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            z-index: 10; text-align: center; pointer-events: none;
+        }
+
+        .hud h1 {
+            color: white; font-size: 8vw; font-weight: 900; margin: 0;
+            background: linear-gradient(45deg, #fff, #0066b1, #fff);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 30px rgba(0, 102, 177, 0.5));
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        .data-stream {
+            position: absolute; bottom: 50px; left: 50px;
+            color: #0066b1; font-size: 10px; font-family: monospace;
+            text-shadow: 0 0 5px #0066b1;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 102, 177, 0.3)); }
+            50% { filter: drop-shadow(0 0 50px rgba(0, 102, 177, 0.8)); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hud">
+        <p style="color: #0066b1; letter-spacing: 15px;">ADVANCED ENGINEERING</p>
+        <h1>BCA  </h1>
+    </div>
+
+    <div class="data-stream" id="stream"></div>
+    <div id="canvas-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        let scene, camera, renderer, points;
+        const particleCount = 25000;
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 2000);
+            camera.position.z = 10;
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 1);
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            const geometry = new THREE.BufferGeometry();
+            const pos = new Float32Array(particleCount * 3);
+            const targets = new Float32Array(particleCount * 3);
+
+            for(let i=0; i<particleCount; i++) {
+                // Initial State: Random Cloud
+                pos[i*3] = (Math.random() - 0.5) * 40;
+                pos[i*3+1] = (Math.random() - 0.5) * 40;
+                pos[i*3+2] = (Math.random() - 0.5) * 40;
+
+                // Target State: 3D Grid Formation
+                targets[i*3] = (i % 50) - 25;
+                targets[i*3+1] = (Math.floor(i / 50) % 50) - 25;
+                targets[i*3+2] = (Math.floor(i / 2500)) - 5;
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+            geometry.setAttribute('target', new THREE.BufferAttribute(targets, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 0.04,
+                color: 0x0066b1,
+                transparent: true,
+                opacity: 0.7,
+                blending: THREE.AdditiveBlending
+            });
+
+            points = new THREE.Points(geometry, material);
+            scene.add(points);
+
+            animate();
+        }
+
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX - window.innerWidth/2) / 100;
+            mouseY = (e.clientY - window.innerHeight/2) / 100;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            const positionAttr = points.geometry.attributes.position;
+            const targetAttr = points.geometry.attributes.target;
+            
+            for(let i=0; i<particleCount; i++) {
+                // Elastic Particle Movement
+                positionAttr.array[i*3] += (targetAttr.array[i*3]*mouseX*0.1 - positionAttr.array[i*3]) * 0.02;
+                positionAttr.array[i*3+1] += (targetAttr.array[i*3+1]*mouseY*0.1 - positionAttr.array[i*3+1]) * 0.02;
+                positionAttr.array[i*3+2] += Math.sin(Date.now() * 0.001 + i) * 0.01;
+            }
+
+            positionAttr.needsUpdate = true;
+            points.rotation.y += 0.002;
+            
+            renderer.render(scene, camera);
+            
+            // Fake Data Stream Effect
+            document.getElementById('stream').innerText = "CORE_PROCESS_ACTIVE: " + Math.random().toString(16).slice(2, 15);
+        }
+
+        init();
+    </script>
+</body>
+</html>
